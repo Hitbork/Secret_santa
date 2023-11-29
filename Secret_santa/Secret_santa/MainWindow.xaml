@@ -1,0 +1,19 @@
+﻿<Window x:Class="Secret_santa.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Secret_santa"
+        mc:Ignorable="d"
+        Title="Тайный санта" Height="790" Width="1320" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"> 
+
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Frame Name="MainFrame" Source="Pages/Main_page.xaml" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Height="650" Width="1300" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden"/>
+        <Label x:Name="CurrentTime" Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" RenderTransformOrigin="-0.11,0.498"/>
+    </Grid>
+</Window>

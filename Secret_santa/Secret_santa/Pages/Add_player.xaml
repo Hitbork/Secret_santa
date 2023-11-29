@@ -1,0 +1,77 @@
+﻿<Window x:Class="Secret_santa.Pages.Add_player"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Secret_santa.Pages"
+        mc:Ignorable="d"
+        Title="Добавить игрока" Height="250" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <!--Имя-->
+        <TextBlock
+            Name="NameTextBlock"
+            Grid.ColumnSpan="2"
+            Text="Имя:"
+            TextAlignment="Center"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="20"/>
+
+        <TextBox
+            Name="NameTextBox"
+            Grid.Column="2"
+            Grid.ColumnSpan="5"
+            FontSize="20"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="20"/>
+
+        <!--Почта-->
+        <TextBlock
+            Name="MailTextBlock"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Text="Почта:"
+            TextAlignment="Center"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="20"/>
+
+        <TextBox
+            Name="MailTextBox"
+            Grid.Row="1"
+            Grid.Column="2"
+            Grid.ColumnSpan="5"
+            FontSize="20"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="20"/>
+        
+        <!--Кнопка-->
+        <Button
+            Name="AddPlayerButton"
+            Content="Добавить"
+            Grid.Row="2"
+            Grid.Column="2"
+            Grid.ColumnSpan="3"
+            FontSize="20"
+            Margin="20"
+            Click="AddPlayerButton_Click"/>
+    </Grid>
+</Window>

@@ -97,5 +97,71 @@ namespace Secret_santa.Pages
 
             UpdateListOfPLayers();
         }
+
+        private void Mix_all_players_button_Click(object sender, RoutedEventArgs e)
+        {
+            string[] strings = File.ReadAllLines(@"..\..\Players.txt");
+
+            if (strings.Length == 0) {
+                MessageBox.Show("Игроки не заполнены!");
+                return;
+            }
+
+            if (strings.Length == 1) {
+                MessageBox.Show("Игрок всего один!");
+                return;
+            }
+
+
+            string[] playersFrom = strings.Select(x => x.ToString().Split('|')[0]).ToArray();
+
+            while (true)
+            {
+                List<string> playersTo = playersFrom.ToList();
+
+                File.WriteAllText(@"..\..\Pairs_of_players.txt", String.Empty);
+
+                using (StreamWriter writer = new StreamWriter(@"..\..\Pairs_of_players.txt", true))
+                {
+                    string pair, playerTo;
+                    Random rnd = new Random();
+
+                    foreach (string player in playersFrom) {
+                        pair = player + "-";
+
+                        do
+                        {
+                            int i = rnd.Next(0, playersTo.Count());
+
+                            playerTo = playersTo[i];
+
+                            if (playerTo == player)
+                                continue;
+
+                            pair += playerTo;
+                            playersTo.RemoveAt(i);
+                        } while (playerTo == player);
+
+                        writer.WriteAsync($"{pair}\n");
+                    }
+                }
+
+                string lastString = File.ReadAllLines(@"..\..\Pairs_of_players.txt").Where(v => v.Trim().IndexOf($"{playersFrom[playersFrom.Length - 1]}-") != -1).ToArray()[0];
+
+                if (lastString.Split('-')[0] == lastString.Split('-')[1])
+                {
+                    MessageBox.Show("Пары игроков не были сформированы, ещё одна попытка");
+                    continue;
+                }
+
+                MessageBox.Show("Пары игроков были сформированы!");
+                break;
+            }
+        }
+
+        private void Send_to_all_button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

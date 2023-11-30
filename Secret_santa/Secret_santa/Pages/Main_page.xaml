@@ -94,16 +94,28 @@
                 Margin="15"
                 Click="Delete_all_players_button_Click"/>
 
+            <!--Кнопка для перемешивания игроков-->
+            <Button
+                Name="Mix_all_players_button"
+                Content="Перемешать игроков"
+                Grid.Row="5"
+                Grid.Column="8"
+                Grid.ColumnSpan="4"
+                FontSize="20"
+                Margin="15"
+                Click="Mix_all_players_button_Click"/>
+
 
             <!--Кнопка для отправления на почту-->
             <Button 
-                Name="Send_button"
-                Content="Оправить"
-                Grid.Row="5"
+                Name="Send_to_all_button"
+                Content="Оправить всем цели"
+                Grid.Row="7"
                 Grid.Column="8"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="4"
+                FontSize="20"
                 Margin="15"
-                Click="Send_button_Click"/>
+                Click="Send_to_all_button_Click"/>
         </Grid>
     </Canvas>
 </Page>

@@ -161,7 +161,79 @@ namespace Secret_santa.Pages
 
         private void Send_to_all_button_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!DoEverybodyHaveAMail()) 
+                return;
+
+            string[] pairs = File.ReadAllLines(@"..\..\Pairs_of_players.txt");
+
+            foreach (string pair in pairs) {
+                SendAMail(pair.Split('-')[0], pair.Split('-')[1]);    
+            }
+
+            MessageBox.Show("Сообщения были отправлены!");
+        }
+
+        public bool DoEverybodyHaveAMail()
+        {
+            string playersThatDontHaveMail = "";
+            string[] strings = File.ReadAllLines(@"..\..\Players.txt");
+
+            foreach (string s in strings) {
+                if (!s.Split('|')[1].Contains("@"))
+                {
+                    playersThatDontHaveMail += s.Split('|')[0] + ", ";
+                }
+            }
+
+            if (!String.IsNullOrEmpty(playersThatDontHaveMail))
+            {
+                MessageBox.Show("У этих игроков нет почты или она неверна: " + playersThatDontHaveMail);
+                return false;
+            }
+
+            return true;
+        }
+
+        public void SendAMail(string sender, string receiver)
+        {
+            string mail = File.ReadAllLines(@"..\..\Players.txt").Where(v => v.Trim().IndexOf(sender) != -1).ToArray()[0].Split('|')[1];
+
+            try
+            {
+                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+                message.IsBodyHtml = true; //тело сообщения в формате HTML
+                message.From = new MailAddress("egord2004@gmail.com", "Секретный санта"); //отправитель сообщения
+                message.To.Add(mail); //адресат сообщения
+                message.Subject = "Твоя цель"; //тема сообщения
+                //message.Body = "<div style=\"color: red;\">Сообщение от System.Net.Mail</div>"; //тело сообщения
+                message.Body = $"<div>Хо-хо-хо, привет {sender}!</div>";
+                message.Body += "<div></div>";
+                message.Body += "<div>Это сообщение было сгенерировано специально для тебя, чтобы ты смог играть в тайного санту!</div>";
+                message.Body += "<div></div>";
+                message.Body += "<h2 style=\"color: red;\">Твоя цель:</h2>";
+                message.Body += "<div></div>";
+                message.Body += $"<h1>{receiver}</h1>";
+                
+                using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com")) //используем сервера Google
+                {
+                    client.Credentials = new NetworkCredential("egord2004@gmail.com", "gqiz kmvw yasl gvtr"); //логин-пароль от аккаунта
+                    client.Port = 587; //порт 587 либо 465
+                    client.EnableSsl = true; //SSL обязательно
+
+                    client.Send(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
+        }
+
+        private void Change_player_mail_button_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePlayerMail changePlayerMail= new ChangePlayerMail();
+
+            changePlayerMail.ShowDialog();
         }
     }
 }

@@ -83,7 +83,7 @@
                 Margin="15"
                 Click="Edit_players_button_Click"/>
 
-            <!--Кнопка для добавления игроков-->
+            <!--Кнопка для удаления игроков-->
             <Button
                 Name="Delete_all_players_button"
                 Content="Удалить всех игроков"
@@ -105,11 +105,22 @@
                 Margin="15"
                 Click="Mix_all_players_button_Click"/>
 
+            <!--Кнопка для редактирования почты игрока-->
+            <Button
+                Name="Change_player_mail_button"
+                Content="Изменить почту игроку ..."
+                Grid.Row="6"
+                Grid.Column="8"
+                Grid.ColumnSpan="4"
+                FontSize="20"
+                Margin="15"
+                Click="Change_player_mail_button_Click"/>
 
-            <!--Кнопка для отправления на почту-->
+
+            <!--Кнопка для отправления всем на почту целей-->
             <Button 
                 Name="Send_to_all_button"
-                Content="Оправить всем цели"
+                Content="Отправить всем цели"
                 Grid.Row="7"
                 Grid.Column="8"
                 Grid.ColumnSpan="4"

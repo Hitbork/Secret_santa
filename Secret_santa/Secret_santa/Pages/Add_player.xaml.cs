@@ -33,7 +33,7 @@ namespace Secret_santa.Pages
                 return;
             }
 
-            using (StreamWriter writer = new StreamWriter(@"..\..\players.txt", true))
+            using (StreamWriter writer = new StreamWriter(@"..\..\Players.txt", true))
             {
                 writer.WriteAsync($"{NameTextBox.Text}|");
                 writer.WriteAsync($"{MailTextBox.Text}\n");

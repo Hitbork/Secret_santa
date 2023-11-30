@@ -161,7 +161,7 @@ namespace Secret_santa.Pages
 
         private void Send_to_all_button_Click(object sender, RoutedEventArgs e)
         {
-            if (!DoEverybodyHaveAMail()) 
+            if (!DoEverybodyHaveAMail() || !AreEverybodyIncluded() || !AreEverybodyInPairs()) 
                 return;
 
             string[] pairs = File.ReadAllLines(@"..\..\Pairs_of_players.txt");
@@ -194,6 +194,48 @@ namespace Secret_santa.Pages
             return true;
         }
 
+        public bool AreEverybodyIncluded()
+        {
+            string[] strings1 = File.ReadAllLines(@"..\..\Players.txt"),
+                strings2 = File.ReadAllLines(@"..\..\Pairs_of_players.txt");
+
+            if (strings1.Length != strings2.Length)
+            {
+                MessageBox.Show("Количество пар не равно количеству игроков!");
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool AreEverybodyInPairs()
+        {
+            string str = "";
+
+            string[] strings = File.ReadAllLines(@"..\..\Players.txt");
+
+            foreach (string s in strings)
+            {
+                if (File.ReadAllLines(@"..\..\Pairs_of_players.txt").Where(x => x.Trim().IndexOf($"{s.Split('|')[0]}-") != -1).ToArray().Length == 0)
+                {
+                    str += $"{s.Split('|')[0]} как отправитель,";
+                }
+
+                if (File.ReadAllLines(@"..\..\Pairs_of_players.txt").Where(x => x.Trim().IndexOf($"-{s.Split('|')[0]}") != -1).ToArray().Length == 0)
+                {
+                    str += $"{s.Split('|')[0]} как адресат,";
+                }
+            }
+            
+            if (!String.IsNullOrEmpty(str))
+            {
+                MessageBox.Show("Данных игроков нет в списке как: " + str);
+                return false;
+            }
+
+            return true;
+        }
+
         public void SendAMail(string sender, string receiver)
         {
             string mail = File.ReadAllLines(@"..\..\Players.txt").Where(v => v.Trim().IndexOf(sender) != -1).ToArray()[0].Split('|')[1];
@@ -202,16 +244,14 @@ namespace Secret_santa.Pages
             {
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
                 message.IsBodyHtml = true; //тело сообщения в формате HTML
-                message.From = new MailAddress("egord2004@gmail.com", "Секретный санта"); //отправитель сообщения
+                message.From = new MailAddress("egord2004@gmail.com", "Тайный санта"); //отправитель сообщения
                 message.To.Add(mail); //адресат сообщения
                 message.Subject = "Твоя цель"; //тема сообщения
-                //message.Body = "<div style=\"color: red;\">Сообщение от System.Net.Mail</div>"; //тело сообщения
                 message.Body = $"<div>Хо-хо-хо, привет {sender}!</div>";
-                message.Body += "<div></div>";
+                message.Body += "<div> </div>";
                 message.Body += "<div>Это сообщение было сгенерировано специально для тебя, чтобы ты смог играть в тайного санту!</div>";
-                message.Body += "<div></div>";
-                message.Body += "<h2 style=\"color: red;\">Твоя цель:</h2>";
-                message.Body += "<div></div>";
+                message.Body += "<div> </div>";
+                message.Body += "<h2 style=\"color: red;\">Твой тайный друг:</h2>";
                 message.Body += $"<h1>{receiver}</h1>";
                 
                 using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com")) //используем сервера Google
@@ -234,6 +274,34 @@ namespace Secret_santa.Pages
             ChangePlayerMail changePlayerMail= new ChangePlayerMail();
 
             changePlayerMail.ShowDialog();
+        }
+
+        private void Send_aim_for_button_Click(object sender, RoutedEventArgs e)
+        {
+            Send_aim_to_player send_Aim_To_Player = new Send_aim_to_player();
+
+            send_Aim_To_Player.ShowDialog();
+        }
+
+        private void Check_mails_button_Click(object sender, RoutedEventArgs e)
+        {
+            CheckForMails checkForMails= new CheckForMails();
+
+            checkForMails.ShowDialog();
+        }
+
+        private void Check_pairs_button_Click(object sender, RoutedEventArgs e)
+        {
+            CheckForPairs checkForPairs= new CheckForPairs();
+
+            checkForPairs.ShowDialog();
+        }
+
+        private void Delete_player_button_Click(object sender, RoutedEventArgs e)
+        {
+            Delete_player delete_Player = new Delete_player();
+
+            delete_Player.ShowDialog();
         }
     }
 }

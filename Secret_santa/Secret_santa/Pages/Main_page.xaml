@@ -56,6 +56,7 @@
             <TextBlock
                 Name="List_of_players"
                 Text="Игроки:"
+                Grid.Row="1"
                 Grid.ColumnSpan="20"
                 TextAlignment="Center"
                 Margin="10"
@@ -65,8 +66,8 @@
             <Button
                 Name="Update_players_button"
                 Content="Обновить игроков"
-                Grid.Row="2"
-                Grid.Column="8"
+                Grid.Row="3"
+                Grid.Column="6"
                 Grid.ColumnSpan="4"
                 FontSize="20"
                 Margin="15"
@@ -77,7 +78,7 @@
                 Name="Edit_players_button"
                 Content="Добавить игроков"
                 Grid.Row="3"
-                Grid.Column="8"
+                Grid.Column="10"
                 Grid.ColumnSpan="4"
                 FontSize="20"
                 Margin="15"
@@ -88,18 +89,29 @@
                 Name="Delete_all_players_button"
                 Content="Удалить всех игроков"
                 Grid.Row="4"
-                Grid.Column="8"
+                Grid.Column="6"
                 Grid.ColumnSpan="4"
                 FontSize="20"
                 Margin="15"
                 Click="Delete_all_players_button_Click"/>
+
+            <!--Кнопка для удаления игрока-->
+            <Button
+                Name="Delete_player_button"
+                Content="Удалить игрока ..."
+                Grid.Row="4"
+                Grid.Column="10"
+                Grid.ColumnSpan="4"
+                FontSize="20"
+                Margin="15"
+                Click="Delete_player_button_Click"/>
 
             <!--Кнопка для перемешивания игроков-->
             <Button
                 Name="Mix_all_players_button"
                 Content="Перемешать игроков"
                 Grid.Row="5"
-                Grid.Column="8"
+                Grid.Column="6"
                 Grid.ColumnSpan="4"
                 FontSize="20"
                 Margin="15"
@@ -109,8 +121,8 @@
             <Button
                 Name="Change_player_mail_button"
                 Content="Изменить почту игроку ..."
-                Grid.Row="6"
-                Grid.Column="8"
+                Grid.Row="5"
+                Grid.Column="10"
                 Grid.ColumnSpan="4"
                 FontSize="20"
                 Margin="15"
@@ -121,12 +133,45 @@
             <Button 
                 Name="Send_to_all_button"
                 Content="Отправить всем цели"
-                Grid.Row="7"
-                Grid.Column="8"
+                Grid.Row="6"
+                Grid.Column="6"
                 Grid.ColumnSpan="4"
                 FontSize="20"
                 Margin="15"
                 Click="Send_to_all_button_Click"/>
+
+            <!--Кнопка для отправления всем на почту цели определённому игроку-->
+            <Button 
+                Name="Send_aim_for_button"
+                Content="Отправить цель для ..."
+                Grid.Row="6"
+                Grid.Column="10"
+                Grid.ColumnSpan="4"
+                FontSize="20"
+                Margin="15"
+                Click="Send_aim_for_button_Click"/>
+
+            <!--Кнопка для проверки почт-->
+            <Button 
+                Name="Check_mails_button"
+                Content="Проверить почты"
+                Grid.Row="7"
+                Grid.Column="17"
+                Grid.ColumnSpan="3"
+                FontSize="12"
+                Margin="15"
+                Click="Check_mails_button_Click"/>
+
+            <!--Кнопка для проверки пар игроков-->
+            <Button 
+                Name="Check_pairs_button"
+                Content="Проверить пары игроков"
+                Grid.Row="8"
+                Grid.Column="17"
+                Grid.ColumnSpan="3"
+                FontSize="12"
+                Margin="15"
+                Click="Check_pairs_button_Click"/>
         </Grid>
     </Canvas>
 </Page>

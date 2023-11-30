@@ -1,5 +1,4 @@
-Вика|
-Мила|
-Егор|hitbork@yandex.ru
-Кира|
-Эва|
+Вика|hitbork@mail.ru
+Мила|hitbork@mail.ru
+Кира|hitbork@mail.ru
+Эва|hitbork@mail.ru

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("players.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logs_of_created_pairs.txt")]
 
 

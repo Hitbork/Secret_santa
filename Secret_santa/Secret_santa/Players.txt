@@ -1,0 +1,3 @@
+Петр 1|smth@mail.ru
+Петр 2|smth@mail.ru
+Петр 3|smth@mail.ru

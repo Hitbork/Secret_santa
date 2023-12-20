@@ -129,18 +129,24 @@ namespace Secret_santa.Pages
                     foreach (string player in playersFrom) {
                         pair = player + "-";
 
-                        do
+                        if (playersTo.Count() != 1)
                         {
-                            int i = rnd.Next(0, playersTo.Count());
+                            do
+                            {
+                                int i = rnd.Next(0, playersTo.Count());
 
-                            playerTo = playersTo[i];
+                                playerTo = playersTo[i];
 
-                            if (playerTo == player)
-                                continue;
+                                if (playerTo == player)
+                                    continue;
 
-                            pair += playerTo;
-                            playersTo.RemoveAt(i);
-                        } while (playerTo == player);
+                                pair += playerTo;
+                                playersTo.RemoveAt(i);
+                            } while (playerTo == player);
+                        } else
+                        {
+                            pair += playersTo[0];
+                        }
 
                         writer.WriteAsync($"{pair}\n");
                     }
@@ -302,6 +308,20 @@ namespace Secret_santa.Pages
             Delete_player delete_Player = new Delete_player();
 
             delete_Player.ShowDialog();
+        }
+
+        private void Logs_pairs_button_Click(object sender, RoutedEventArgs e)
+        {
+            string path = @"..\..\Logs_of_created_pairs.txt";
+
+            string text = $"\n\n[{DateTime.Now}]\n" + File.ReadAllText(@"..\..\Pairs_of_players.txt");
+
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteAsync(text);
+            }
+
+            MessageBox.Show("Пары игроков были добавлены в логи!");
         }
     }
 }

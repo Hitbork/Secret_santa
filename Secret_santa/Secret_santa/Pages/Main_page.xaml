@@ -151,6 +151,17 @@
                 Margin="15"
                 Click="Send_aim_for_button_Click"/>
 
+            <!--Кнопка для добавления логов пар игроков-->
+            <Button 
+                Name="Logs_pairs_button"
+                Content="Добавить пары в логи"
+                Grid.Row="6"
+                Grid.Column="17"
+                Grid.ColumnSpan="3"
+                FontSize="12"
+                Margin="15"
+                Click="Logs_pairs_button_Click"/>
+
             <!--Кнопка для проверки почт-->
             <Button 
                 Name="Check_mails_button"

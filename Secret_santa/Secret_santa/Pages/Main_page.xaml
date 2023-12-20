@@ -155,12 +155,23 @@
             <Button 
                 Name="Logs_pairs_button"
                 Content="Добавить пары в логи"
-                Grid.Row="6"
+                Grid.Row="5"
                 Grid.Column="17"
                 Grid.ColumnSpan="3"
                 FontSize="12"
                 Margin="15"
                 Click="Logs_pairs_button_Click"/>
+
+            <!--Кнопка для просмотра логов пар игроков-->
+            <Button 
+                Name="Look_into_logs_button"
+                Content="Посмотреть логи"
+                Grid.Row="6"
+                Grid.Column="17"
+                Grid.ColumnSpan="3"
+                FontSize="12"
+                Margin="15"
+                Click="Look_into_logs_button_Click"/>
 
             <!--Кнопка для проверки почт-->
             <Button 

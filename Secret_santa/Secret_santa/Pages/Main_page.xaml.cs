@@ -323,5 +323,13 @@ namespace Secret_santa.Pages
 
             MessageBox.Show("Пары игроков были добавлены в логи!");
         }
+
+        private void Look_into_logs_button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process txt = new System.Diagnostics.Process();
+            txt.StartInfo.FileName = "notepad.exe";
+            txt.StartInfo.Arguments = @"..\..\Logs_of_created_pairs.txt";
+            txt.Start();
+        }
     }
 }
